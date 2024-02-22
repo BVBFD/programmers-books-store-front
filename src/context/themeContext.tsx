@@ -1,6 +1,9 @@
-import React, { createContext, useMemo, useState } from "react";
+import React, { createContext, useEffect, useMemo, useState } from "react";
 import { ThemeName } from "../style/theme";
 import GlobalStyle from "../style/global";
+
+const DEFAULT_THEME_NAME = "light";
+const THEME_LOCALSTORAGE_KEY = "book_store_theme";
 
 interface State {
   themeName: ThemeName;
@@ -8,7 +11,7 @@ interface State {
 }
 
 export const ThemeContext = createContext<State>({
-  themeName: "light",
+  themeName: DEFAULT_THEME_NAME,
   toggleTheme: () => {},
 });
 
@@ -17,10 +20,14 @@ export const ThemeContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [themeName, setThemeName] = useState<ThemeName>("light");
+  const [themeName, setThemeName] = useState<ThemeName>(DEFAULT_THEME_NAME);
 
   const toggleTheme = () => {
     setThemeName((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    localStorage.setItem(
+      THEME_LOCALSTORAGE_KEY,
+      themeName === "light" ? "dark" : "light"
+    );
   };
 
   const contextValue = useMemo(
@@ -28,8 +35,13 @@ export const ThemeContextProvider = ({
       themeName,
       toggleTheme,
     }),
-    []
+    [themeName, toggleTheme]
   );
+
+  useEffect(() => {
+    const savedThemeName = localStorage.getItem("light");
+    setThemeName((savedThemeName || DEFAULT_THEME_NAME) as ThemeName);
+  }, []);
 
   return (
     <ThemeContext.Provider value={contextValue}>
