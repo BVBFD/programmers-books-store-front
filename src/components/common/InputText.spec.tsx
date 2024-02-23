@@ -2,16 +2,12 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import InputText from "./InputText";
 import { ThemeContextProvider } from "../../context/themeContext";
-import { ThemeProvider } from "styled-components";
-import { getTheme } from "../../style/theme";
 
 describe("Button 컴포넌트 테스트", () => {
   it("렌더를 확인", () => {
     render(
       <ThemeContextProvider>
-        <ThemeProvider theme={getTheme("light")}>
-          <InputText placeholder="여기에 입력하세요" />
-        </ThemeProvider>
+        <InputText placeholder="여기에 입력하세요" />
       </ThemeContextProvider>
     );
 
@@ -25,9 +21,7 @@ describe("Button 컴포넌트 테스트", () => {
 
     render(
       <ThemeContextProvider>
-        <ThemeProvider theme={getTheme("light")}>
-          <InputText placeholder="여기에 입력하세요" ref={ref} />
-        </ThemeProvider>
+        <InputText placeholder="여기에 입력하세요" ref={ref} />
       </ThemeContextProvider>
     );
 

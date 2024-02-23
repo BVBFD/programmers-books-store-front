@@ -1,23 +1,32 @@
-import { ThemeProvider } from "styled-components";
 import "./App.css";
 import ThemeSwitcher from "./components/header/ThemeSwitcher";
-import { ThemeContext, ThemeContextProvider } from "./context/themeContext";
+import { ThemeContextProvider } from "./context/themeContext";
 import Home from "./pages/Home";
-import { getTheme } from "./style/theme";
 import Layout from "./components/layout/Layout";
-import { useContext } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Error from "./components/common/Error";
+
+const layout = (comp: React.ReactNode) => {
+  return <Layout>{comp}</Layout>;
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: layout(<Home />),
+    errorElement: layout(<Error />),
+  },
+  {
+    path: "/books",
+    element: layout(<div>도서목록</div>),
+    errorElement: layout(<Error />),
+  },
+]);
 
 function App() {
-  const { themeName } = useContext(ThemeContext);
-
   return (
     <ThemeContextProvider>
-      <ThemeProvider theme={getTheme(`${themeName}`)}>
-        <Layout>
-          <ThemeSwitcher />
-          <Home />
-        </Layout>
-      </ThemeProvider>
+      <RouterProvider router={router} />
     </ThemeContextProvider>
   );
 }

@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
-import { ThemeName } from "../style/theme";
+import { ThemeName, getTheme } from "../style/theme";
 import GlobalStyle from "../style/global";
+import { ThemeProvider } from "styled-components";
 
 const DEFAULT_THEME_NAME = "light";
 const THEME_LOCALSTORAGE_KEY = "book_store_theme";
@@ -45,8 +46,12 @@ export const ThemeContextProvider = ({
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      <GlobalStyle themeName={`${themeName}` === "light" ? "light" : "dark"} />
-      {children}
+      <ThemeProvider theme={getTheme(`${themeName}`)}>
+        <GlobalStyle
+          themeName={`${themeName}` === "light" ? "light" : "dark"}
+        />
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 };
