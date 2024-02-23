@@ -24,8 +24,6 @@ const GlobalStyle = createGlobalStyle<Props>`
     }
 
     * {
-      background-color: ${(props) =>
-        props.themeName === "light" ? "white" : "black"};
       color: ${(props) => (props.themeName === "light" ? "black" : "white")}
     }
 `;
