@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { getToken, removeToken } from "../store/authStore";
 
 const BASE_URL = "http://localhost:8080";
 const DEFAULT_TIMEOUT = 30000;
@@ -9,8 +10,7 @@ export const createClient = (config?: AxiosRequestConfig) => {
     timeout: DEFAULT_TIMEOUT,
     headers: {
       "Content-Type": "application/json",
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIwNDhkZWU5OC0zYjVhLTRhM2QtODZhOS02N2JlMTgxY2M0ZTAiLCJlbWFpbCI6IjEyMzQ1NkBnbWFpbC5jb20iLCJjcmVhdGVkX2F0IjoiMjAyNC0wMi0yNiAwMDoxNTo1OSIsInVwZGF0ZWRfYXQiOiIyMDI0LTAyLTI2IDAwOjE1OjU5IiwiaWF0IjoxNzA4OTA2NzQwLCJleHAiOjE3MDg5OTMxNDAsImlzcyI6IkxlZSBTZW9uZyBFdW4ifQ.ar_Q6ZTWlvq2VW-hn-oLWqJ7iND6FEBBHtiXIREaark",
+      token: getToken() ? getToken() : "",
     },
     withCredentials: true,
     ...config,
@@ -21,6 +21,12 @@ export const createClient = (config?: AxiosRequestConfig) => {
       return response;
     },
     (error) => {
+      // 로그인 만료 처리
+      if (error.response.status === 401) {
+        removeToken();
+        window.location.href = "/login";
+        return;
+      }
       return Promise.reject(error);
     }
   );

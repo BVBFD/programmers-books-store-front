@@ -1,5 +1,4 @@
 import "./App.css";
-import ThemeSwitcher from "./components/header/ThemeSwitcher";
 import { ThemeContextProvider } from "./context/themeContext";
 import Home from "./pages/Home";
 import Layout from "./components/layout/Layout";
@@ -7,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./components/common/Error";
 import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
+import Login from "./pages/Login";
 
 const layout = (comp: React.ReactNode) => {
   return <Layout>{comp}</Layout>;
@@ -31,6 +31,11 @@ const router = createBrowserRouter([
   {
     path: "/reset",
     element: layout(<ResetPassword />),
+    errorElement: layout(<Error />),
+  },
+  {
+    path: "/login",
+    element: layout(<Login />),
     errorElement: layout(<Error />),
   },
 ]);
