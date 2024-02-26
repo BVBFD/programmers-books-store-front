@@ -6,6 +6,7 @@ import Layout from "./components/layout/Layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./components/common/Error";
 import Signup from "./pages/Signup";
+import ResetPassword from "./pages/ResetPassword";
 
 const layout = (comp: React.ReactNode) => {
   return <Layout>{comp}</Layout>;
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: layout(<Signup />),
+    errorElement: layout(<Error />),
+  },
+  {
+    path: "/reset",
+    element: layout(<ResetPassword />),
     errorElement: layout(<Error />),
   },
 ]);
