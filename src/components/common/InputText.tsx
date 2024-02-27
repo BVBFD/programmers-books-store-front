@@ -13,11 +13,11 @@ const InputText = React.forwardRef(
   ) => {
     return (
       <InputTextStyled
+        {...props}
         placeholder={placeholder}
         ref={ref}
         type={inputType}
         onChange={onChange}
-        {...props}
       />
     );
   }

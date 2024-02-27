@@ -1,7 +1,7 @@
 export interface Book {
   _id: string;
   title: string;
-  category_id: string;
+  categoryId: string;
   form: string;
   isbn: string;
   img: string;
@@ -11,9 +11,9 @@ export interface Book {
   pages: number;
   contents: string;
   price: number;
-  pub_date: string;
-  updated_at: string;
-  created_at: string;
+  pubDate: string;
+  updatedAt: string;
+  createdAt: string;
   category?: string;
   likes: number;
   liked?: number;

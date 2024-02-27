@@ -7,6 +7,7 @@ import Error from "./components/common/Error";
 import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Login from "./pages/Login";
+import Books from "./pages/Books";
 
 const layout = (comp: React.ReactNode) => {
   return <Layout>{comp}</Layout>;
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/books",
-    element: layout(<div>도서목록</div>),
+    element: layout(<Books />),
     errorElement: layout(<Error />),
   },
   {

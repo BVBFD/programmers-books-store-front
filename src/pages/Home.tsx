@@ -1,6 +1,7 @@
 import Button from "../components/common/Button";
 import InputText from "../components/common/InputText";
 import Tittle from "../components/common/Title";
+import ThemeSwitcher from "../components/header/ThemeSwitcher";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Button size="large" schema="primary">
         버튼테스트
       </Button>
+      <ThemeSwitcher />
       <InputText placeholder="여기에 입력하세요" />
       <div>home body</div>
     </>

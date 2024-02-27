@@ -7,8 +7,12 @@ interface Props {
   color?: ColorKey;
 }
 
-const Title = ({ children, size }: Props) => {
-  return <TitleStyle size={size}>{children}</TitleStyle>;
+const Title = ({ children, size, color }: Props) => {
+  return (
+    <TitleStyle size={size} color={color}>
+      {children}
+    </TitleStyle>
+  );
 };
 
 const TitleStyle = styled.h1<Omit<Props, "children">>`
