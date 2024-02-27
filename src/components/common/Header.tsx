@@ -25,7 +25,7 @@ const Header = () => {
                 to={
                   category_id === null
                     ? `/books`
-                    : `/books?category_id=${category_id}`
+                    : `/books?categoryId=${category_id}`
                 }
               >
                 {category}

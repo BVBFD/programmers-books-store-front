@@ -30,3 +30,8 @@ export const fetchBooks = async (params: FetchBooksParams) => {
     };
   }
 };
+
+export const fetchBook = async (bookId: string) => {
+  const response = await httpClient.get<Book>(`/books/${bookId}`);
+  return response.data;
+};

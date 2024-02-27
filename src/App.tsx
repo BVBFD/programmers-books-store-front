@@ -8,6 +8,7 @@ import Signup from "./pages/Signup";
 import ResetPassword from "./pages/ResetPassword";
 import Login from "./pages/Login";
 import Books from "./pages/Books";
+import BookDetail from "./pages/BookDetail";
 
 const layout = (comp: React.ReactNode) => {
   return <Layout>{comp}</Layout>;
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: layout(<Login />),
+    errorElement: layout(<Error />),
+  },
+  {
+    path: "/books/:bookId",
+    element: layout(<BookDetail />),
     errorElement: layout(<Error />),
   },
 ]);

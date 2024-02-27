@@ -3,6 +3,7 @@ import BookItem from "./BookItem";
 import { ThemeContextProvider } from "../../context/themeContext";
 import { Book } from "../../models/book.model";
 import { formatNumber } from "../../utils/format";
+import { getImgSrc } from "../../utils/image";
 
 const dummyBook: Book = {
   _id: "13a61ae0-2ffd-4a71-8929-0adfa3c2a812",
@@ -27,7 +28,7 @@ describe("BookItem", () => {
   it("렌더 여부", () => {
     const { getByText, getByAltText } = render(
       <ThemeContextProvider>
-        <BookItem book={dummyBook} view="grid" />
+        <BookItem key={dummyBook._id} book={dummyBook} view="list" />
       </ThemeContextProvider>
     );
 
@@ -38,7 +39,7 @@ describe("BookItem", () => {
     expect(getByText(dummyBook.likes)).toBeInTheDocument();
     expect(getByAltText(dummyBook.title)).toHaveAttribute(
       "src",
-      `https://picsum.photos/id/${parseInt(dummyBook.isbn)}/600/600`
+      `${getImgSrc(parseInt(dummyBook.isbn))}`
     );
   });
 });

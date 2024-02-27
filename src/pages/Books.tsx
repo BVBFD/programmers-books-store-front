@@ -19,7 +19,6 @@ const Books = () => {
           <BooksViewSwitcher />
         </div>
         {!isEmpty ? <BooksList books={books} /> : <BooksEmpty />}
-        <BooksEmpty />
         {!isEmpty && <Pagination pagination={pagination} />}
       </BooksStyle>
     </>
