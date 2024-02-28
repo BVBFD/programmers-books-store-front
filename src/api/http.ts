@@ -6,14 +6,20 @@ const DEFAULT_TIMEOUT = 30000;
 
 export const createClient = (config?: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
+    ...config,
     baseURL: BASE_URL,
     timeout: DEFAULT_TIMEOUT,
     headers: {
       "Content-Type": "application/json",
-      token: getToken() ? getToken() : "",
+      token: getToken(),
     },
     withCredentials: true,
-    ...config,
+  });
+
+  // headers 안에 token값을 넣었음에도 불구하고 전달 안되던 문제 아래와 같이 해결
+  axiosInstance.interceptors.request.use((config) => {
+    config.headers.token = getToken();
+    return config;
   });
 
   axiosInstance.interceptors.response.use(
