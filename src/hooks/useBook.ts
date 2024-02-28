@@ -3,11 +3,14 @@ import { Book } from "../models/book.model";
 import { fetchBook, likeBook, unlikeBook } from "../api/books.api";
 import { useAuthStore } from "../store/authStore";
 import { useAlert } from "./useAlert";
+import { addCart } from "../api/carts.api";
 
 export const useBook = (bookId: string) => {
   const [book, setBook] = useState<Book[]>([]);
   const { isloggedIn } = useAuthStore();
   const showAlert = useAlert();
+
+  const [cartAdded, setCartAdded] = useState<boolean>(false);
 
   const likeToggle = () => {
     if (!isloggedIn) {
@@ -43,11 +46,30 @@ export const useBook = (bookId: string) => {
     }
   };
 
+  const addToCart = (quantity: number) => {
+    addCart({
+      books_id: book[0]._id,
+      quantity,
+    })
+      .then(() => {
+        setCartAdded(true);
+        setTimeout(() => {
+          setCartAdded(false);
+        }, 3000);
+      })
+      .catch(() => {
+        showAlert("로그인이 필요합니다.");
+      });
+  };
+
   useEffect(() => {
     fetchBook(bookId).then((book) => setBook(book as unknown as Book[]));
   }, [bookId]);
 
-  console.log(book);
-
-  return { book: book[0], likeToggle };
+  return {
+    book: book[0],
+    cartAdded,
+    likeToggle,
+    addToCart,
+  };
 };
