@@ -24,6 +24,7 @@ const EmptyStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 12px;
   padding: 120px 0;
 
