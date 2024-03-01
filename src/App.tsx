@@ -11,6 +11,7 @@ import Books from "./pages/Books";
 import BookDetail from "./pages/BookDetail";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import OrderList from "./pages/OrderList";
 
 const layout = (comp: React.ReactNode) => {
   return <Layout>{comp}</Layout>;
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
   {
     path: "/order",
     element: layout(<Order />),
+    errorElement: layout(<Error />),
+  },
+  {
+    path: "/orderlist",
+    element: layout(<OrderList />),
     errorElement: layout(<Error />),
   },
 ]);

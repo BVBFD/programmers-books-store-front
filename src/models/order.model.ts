@@ -23,3 +23,17 @@ export interface Delivery {
   receiver: string;
   contact: string;
 }
+
+export interface OrderDetail {
+  author: string;
+  books_id: string;
+  orders_id: string;
+  created_at: string;
+  price: number;
+  quantity: number;
+  title: string;
+}
+
+export interface OrderList extends Order {
+  detail?: OrderDetail[];
+}
