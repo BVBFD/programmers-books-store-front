@@ -13,57 +13,58 @@ import Cart from "@/pages/Cart";
 import Order from "@/pages/Order";
 import OrderList from "@/pages/OrderList";
 
-const layout = (comp: React.ReactNode) => {
-  return <Layout>{comp}</Layout>;
-};
-
-const router = createBrowserRouter([
+const routeList = [
   {
     path: "/",
-    element: layout(<Home />),
-    errorElement: layout(<Error />),
+    element: <Home />,
   },
   {
     path: "/books",
-    element: layout(<Books />),
-    errorElement: layout(<Error />),
+    element: <Books />,
   },
   {
     path: "/signup",
-    element: layout(<Signup />),
-    errorElement: layout(<Error />),
+    element: <Signup />,
   },
   {
     path: "/reset",
-    element: layout(<ResetPassword />),
-    errorElement: layout(<Error />),
+    element: <ResetPassword />,
   },
   {
     path: "/login",
-    element: layout(<Login />),
-    errorElement: layout(<Error />),
+    element: <Login />,
   },
   {
     path: "/books/:bookId",
-    element: layout(<BookDetail />),
-    errorElement: layout(<Error />),
+    element: <BookDetail />,
   },
   {
     path: "/cart",
-    element: layout(<Cart />),
-    errorElement: layout(<Error />),
+    element: <Cart />,
   },
   {
     path: "/order",
-    element: layout(<Order />),
-    errorElement: layout(<Error />),
+    element: <Order />,
   },
   {
     path: "/orderlist",
-    element: layout(<OrderList />),
-    errorElement: layout(<Error />),
+    element: <OrderList />,
   },
-]);
+];
+
+const router = createBrowserRouter(
+  routeList.map((item) => {
+    return {
+      ...item,
+      element: <Layout>{item.element}</Layout>,
+      errorElement: (
+        <Layout>
+          <Error />
+        </Layout>
+      ),
+    };
+  })
+);
 
 function App() {
   return (
