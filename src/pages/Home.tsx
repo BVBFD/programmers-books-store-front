@@ -1,7 +1,7 @@
-import Button from "../components/common/Button";
-import InputText from "../components/common/InputText";
-import Tittle from "../components/common/Title";
-import ThemeSwitcher from "../components/header/ThemeSwitcher";
+import Button from "@/components/common/Button";
+import InputText from "@/components/common/InputText";
+import Tittle from "@/components/common/Title";
+import ThemeSwitcher from "@/components/header/ThemeSwitcher";
 
 const Home = () => {
   return (

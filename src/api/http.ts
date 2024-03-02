@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { getToken, removeToken } from "../store/authStore";
+import { getToken, removeToken } from "@/store/authStore";
 
 const BASE_URL = "http://localhost:8080";
 const DEFAULT_TIMEOUT = 30000;

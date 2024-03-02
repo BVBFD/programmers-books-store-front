@@ -1,9 +1,9 @@
 import React from "react";
-import Title from "../components/common/Title";
+import Title from "@/components/common/Title";
 import styled from "styled-components";
-import { useOrders } from "../hooks/useOrder";
-import { formatDate, formatNumber } from "../utils/format";
-import Button from "../components/common/Button";
+import { useOrders } from "@/hooks/useOrder";
+import { formatDate, formatNumber } from "@/utils/format";
+import Button from "@/components/common/Button";
 
 const OrderList = () => {
   const { orders, selectOrderItem, selectedItemId } = useOrders();
@@ -23,6 +23,7 @@ const OrderList = () => {
               <th>대표상품명</th>
               <th>수량</th>
               <th>금액</th>
+              <th>기타</th>
             </tr>
           </thead>
           <tbody>
@@ -83,10 +84,13 @@ const OrderListStyle = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.color.border};
   }
 
+  tr {
+    border-bottom: 1px solid ${({ theme }) => theme.color.border};
+  }
+
   th,
   td {
     padding: 16px;
-    border-bottom: 1px solid ${({ theme }) => theme.color.border};
     text-align: center;
   }
 

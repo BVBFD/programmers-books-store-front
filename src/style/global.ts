@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import "sanitize.css";
-import { ThemeName } from "./theme";
+import { ThemeName } from "@/style/theme";
 
 interface Props {
   themeName: ThemeName;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Cart } from "../models/cart.model";
-import { deleteCart, fetchCart } from "../api/carts.api";
+import { Cart } from "@/models/cart.model";
+import { deleteCart, fetchCart } from "@/api/carts.api";
 import { useNavigate } from "react-router-dom";
 
 export const useCart = () => {

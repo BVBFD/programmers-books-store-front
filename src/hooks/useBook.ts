@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Book } from "../models/book.model";
-import { fetchBook, likeBook, unlikeBook } from "../api/books.api";
-import { useAuthStore } from "../store/authStore";
-import { useAlert } from "./useAlert";
-import { addCart } from "../api/carts.api";
+import { Book } from "@/models/book.model";
+import { fetchBook, likeBook, unlikeBook } from "@/api/books.api";
+import { useAuthStore } from "@/store/authStore";
+import { useAlert } from "@/hooks/useAlert";
+import { addCart } from "@/api/carts.api";
 
 export const useBook = (bookId: string) => {
   const [book, setBook] = useState<Book[]>([]);
