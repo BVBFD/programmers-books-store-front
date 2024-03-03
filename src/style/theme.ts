@@ -96,9 +96,9 @@ export const light: Theme = {
   },
   layout: {
     width: {
-      large: "1020px",
-      medium: "760px",
-      small: "320px",
+      large: "1024px",
+      medium: "768px",
+      small: "319px",
     },
   },
 };
