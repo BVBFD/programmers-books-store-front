@@ -18,3 +18,11 @@ export interface Book {
   likes: number;
   liked?: number;
 }
+
+export interface BookReviewItem {
+  id: number;
+  userName: string;
+  content: string;
+  createdAt: string;
+  score: number;
+}
