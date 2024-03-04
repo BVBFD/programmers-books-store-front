@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Book, BookReviewItem } from "@/models/book.model";
+import { Book, BookReviewItem, BookReviewItemWrite } from "@/models/book.model";
 import { fetchBook, likeBook, unlikeBook } from "@/api/books.api";
 import { useAuthStore } from "@/store/authStore";
 import { useAlert } from "@/hooks/useAlert";
 import { addCart } from "@/api/carts.api";
-import { fetchBookReview } from "@/api/review.api";
+import { addBookReview, fetchBookReview } from "@/api/review.api";
 
 export const useBook = (bookId: string) => {
   const [book, setBook] = useState<Book[]>([]);
@@ -69,11 +69,21 @@ export const useBook = (bookId: string) => {
     fetchBookReview(bookId).then((reviews) => setReviews(reviews));
   }, [bookId]);
 
+  const addReview = (data: BookReviewItemWrite) => {
+    if (!book) return;
+
+    addBookReview(bookId, data).then((res) => {
+      fetchBookReview(bookId).then((reviews) => setReviews(reviews));
+      showAlert(res.message);
+    });
+  };
+
   return {
     book: book[0],
     cartAdded,
     likeToggle,
     addToCart,
     reviews,
+    addReview,
   };
 };
