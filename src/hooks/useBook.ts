@@ -5,6 +5,7 @@ import { useAuthStore } from "@/store/authStore";
 import { useAlert } from "@/hooks/useAlert";
 import { addCart } from "@/api/carts.api";
 import { addBookReview, fetchBookReview } from "@/api/review.api";
+import { useToast } from "./useToast";
 
 export const useBook = (bookId: string) => {
   const [book, setBook] = useState<Book[]>([]);
@@ -13,6 +14,8 @@ export const useBook = (bookId: string) => {
 
   const [cartAdded, setCartAdded] = useState<boolean>(false);
   const [reviews, setReviews] = useState<BookReviewItem[]>([]);
+
+  const { showToast } = useToast();
 
   const likeToggle = () => {
     if (!isloggedIn) {
@@ -32,6 +35,7 @@ export const useBook = (bookId: string) => {
             likes: book[0].likes - 1,
           },
         ]);
+        showToast("좋아요가 취소되었습니다");
       });
     } else {
       // unlike 상태 -> like 실행
@@ -44,6 +48,7 @@ export const useBook = (bookId: string) => {
             likes: book[0].likes + 1,
           },
         ]);
+        showToast("좋아요가 성공했습니다");
       });
     }
   };
