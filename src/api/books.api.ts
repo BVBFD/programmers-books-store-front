@@ -32,3 +32,7 @@ export const likeBook = async (bookId: string) => {
 export const unlikeBook = async (bookId: string) => {
   return await requestHandler("delete", `/likes/${bookId}`);
 };
+
+export const fetchBestBooks = async () => {
+  return await requestHandler("get", `/books/best`);
+};
